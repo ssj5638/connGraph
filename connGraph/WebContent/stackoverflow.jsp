@@ -3,6 +3,8 @@
 <%@page import="java.util.*" %>
 <%@page import="org.json.JSONObject" %>
 
+<%-- 2015년도부터 2017년도의 동물 종류 불러오기 각 Table에서 데이터 불러오기 --%>
+
 <%
 	Connection conn = null;
 	try {

@@ -15,7 +15,7 @@
 	
 	$.ajax({
 		type : 'POST',
-		url : 'stackoverflow.jsp',
+		url : 'graphOld.jsp',
 		dataType : 'json',
 		success : function(data) {
 			// stringify : 인자로 전달된 자바스크립트의 데이터(배열)를 JSON 문자열로 바꾸기
@@ -36,7 +36,7 @@
 		}
 	});
 	
-    google.charts.load('current', {packages : [ 'corechart', 'bar' ]});
+	/* google.charts.load('current', {packages : [ 'corechart', 'bar' ]});
     google.charts.setOnLoadCallback(drawMultSeries);
  
     function drawMultSeries() {
@@ -73,12 +73,11 @@
                 title : 'Year'
             }
         };
-        var chart = new google.visualization.BarChart(document
-                .getElementById('chart_div'));
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
         chart.draw(data, options);
-    }
+    } */
 	
- 	/* google.charts.load("current", {packages:['corechart']});
+    google.charts.load("current", {packages:['corechart']});
  	google.charts.setOnLoadCallback(drawChart);
  	
  	function drawChart() {
@@ -102,7 +101,7 @@
         }
         
         var options = {
-				width: 600,
+				width: 1200,
                 height: 600,
                 legend: { position: 'top', maxLines: 3 },
                 bar: { groupWidth: '75%' },
@@ -112,11 +111,11 @@
 		var chart = new google.visualization.ColumnChart(document.getElementById('container'));
         chart.draw(data, options);
  	
- 	} */
+ 	}
 
 </script>
 </head>
 <body>
-	<div id="chart_div"></div>
+	<div id="container"></div>
  </body>
  </html>
