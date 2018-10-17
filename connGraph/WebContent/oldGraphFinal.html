@@ -1,0 +1,81 @@
+<html>
+   <head>
+      <title>Google Charts Tutorial</title>
+      	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+			<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+       		<script type = "text/javascript" src = "https://www.gstatic.com/charts/loader.js"></script>
+			<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+      		<script type = "text/javascript">
+	      		var queryObject = "";
+	      		var queryObjectLen = "";
+	      		
+	      		$.ajax({
+	      			type : 'POST',
+	      			url : 'graphOld2.jsp',
+	      			dataType : 'json',
+	      			success : function(data) {
+	      				// stringify : 인자로 전달된 자바스크립트의 데이터(배열)를 JSON 문자열로 바꾸기
+	      				// eval : javascript 코드가 맞는지 검증하고 문자열을 자바스크립트 코드로 처리하는 함수
+	      				queryObject = eval('(' + JSON.stringify(data, null, 2) + ')');
+	      				
+	      				// queryObject.empdetails에는 2개의 Json 객체가 있음			
+	      				queryObjectLen = queryObject.barlist.length;
+	      				
+	      				// queryObject 데이터 확인
+	      				/* alert(queryObject.barlist[0].Year + 
+	      						' ' + queryObject.barlist[0].Dogs +
+	      						' ' + queryObject.barlist[0].Cats +
+	      						' ' + queryObject.barlist[0].The_Others); */
+	      			},
+	      			error : function(xhr, type){
+	      				alert('server error occoured')
+	      			}
+	      		});
+      			google.charts.load('current', {packages: ['corechart']});
+         		
+      </script>
+   </head>
+   
+   <body>
+      <div id = "container" style = "width: 550px; height: 400px; margin: 0 auto">
+      </div>
+      <script language = "JavaScript">
+         function drawChart() {
+            // Define the chart to be drawn.
+            var data = new google.visualization.DataTable();
+	        data.addColumn('string', 'year');
+	        data.addColumn('number', 'dogs');
+	        data.addColumn('number', 'cats');
+	        data.addColumn('number', 'others');
+	        data.addColumn('number', 'adoption');
+
+	        for (var i = 0; i < queryObjectLen; i++) {
+	        	var year = queryObject.barlist[i].Year;
+	        	var dogs = queryObject.barlist[i].Dogs;
+	        	var cats = queryObject.barlist[i].Cats;
+	        	var others = queryObject.barlist[i].The_Others;
+	        	var adoption = queryObject.barlist[i].Adoption;
+	        	//alert(year + dogs + cats + others);
+	        	data.addRows([
+	        		[year, dogs, cats, others, adoption]
+	        	]);
+	        }
+	        
+            // Set chart options
+            var options = {
+               title : 'Fruits distribution',
+               vAxis: {title: 'Fruits'},
+               hAxis: {title: 'Person'},
+               seriesType: 'bars',
+               series: {3: {type: 'line'}},
+               //isStacked: true
+            };
+
+            // Instantiate and draw the chart.
+            var chart = new google.visualization.ComboChart(document.getElementById('container'));
+            chart.draw(data, options);
+         }
+         google.charts.setOnLoadCallback(drawChart);
+      </script>
+   </body>
+</html>
