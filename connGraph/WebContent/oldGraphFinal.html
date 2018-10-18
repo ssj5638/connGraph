@@ -20,12 +20,6 @@
 	      				
 	      				// queryObject.empdetails에는 2개의 Json 객체가 있음			
 	      				queryObjectLen = queryObject.barlist.length;
-	      				
-	      				// queryObject 데이터 확인
-	      				/* alert(queryObject.barlist[0].Year + 
-	      						' ' + queryObject.barlist[0].Dogs +
-	      						' ' + queryObject.barlist[0].Cats +
-	      						' ' + queryObject.barlist[0].The_Others); */
 	      			},
 	      			error : function(xhr, type){
 	      				alert('server error occoured')
@@ -48,7 +42,8 @@
 	        data.addColumn('number', 'cats');
 	        data.addColumn('number', 'others');
 	        data.addColumn('number', 'adoption');
-
+			
+	        alert("왜왜왜?");
 	        for (var i = 0; i < queryObjectLen; i++) {
 	        	var year = queryObject.barlist[i].Year;
 	        	var dogs = queryObject.barlist[i].Dogs;

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+		<title>Donut Chart</title>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		<script type="text/javascript">
+		
+			var queryObject = "";
+			var queryObjectLen = "";
+			
+			$.ajax({
+				type: 'POST',
+				url: 'pieC_2015.jsp',
+				dataType: 'json',
+				success: function(data){
+					queryObject = eval('(' + JSON.stringify(data, null, 2) + ')');q
+					queryObjectLen = queryObject.barlist.length;
+				},
+				error: function(xhr, type){
+					alert('server error occoured')
+				}
+			});
+					
+			google.charts.load("current", {packages:["corechart"]});
+
+			google.charts.setOnLoadCallback(drawChart);
+			function drawChart() {
+				alert('data');
+				var year = queryObject.barlist[0].Year;
+				var a = queryObject.barlist[0].A;
+				var d = queryObject.barlist[0].D;
+				var r = queryObject.barlist[0].R;
+				var etc = queryObject.barlist[0].C + queryObject.barlist[0].E;
+				
+				var data = new google.visualization.DataTable();
+				data.addColumn('string', year);
+				data.addColumn('number', 'Count');
+				
+				data.addRows([
+					["입양/기증", a],
+					["안락사/자연사", d],
+					["반환", r],
+					["기타", etc]
+				]);
+			var options = {
+					title: '',
+					pieHole: 0.4,
+//					legend: 'none',
+//					pieSliceText: 'label',	// 그래프에 state 종류 출력
+					};
+			
+			var options1 = {
+					title: '',
+					pieHole: 0.4,
+					legend: 'none',
+					slices: {
+			            0: { color: 'blue' },
+			            1: { color: 'transparent' },
+			            2: { color: 'transparent' },
+			            3: { color: 'transparent' }
+			          }};
+			
+			var options2 = {
+					title: '',
+					pieHole: 0.4,
+					legend: 'none',
+					slices: {
+			            0: { color: 'transparent' },
+			            1: { color: 'red' },
+			            2: { color: 'transparent' },
+			            3: { color: 'transparent' }
+			          }};
+			
+			var options3 = {
+					title: '',
+					pieHole: 0.4,
+					legend: 'none',
+					slices: {
+			            0: { color: 'transparent' },
+			            1: { color: 'transparent' },
+			            2: { color: 'orange' },
+			            3: { color: 'transparent' }
+			          }};
+			
+			var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+			chart.draw(data, options);
+			var chart1 = new google.visualization.PieChart(document.getElementById('donutchart_v1'));
+			chart1.draw(data, options1);
+			var chart2 = new google.visualization.PieChart(document.getElementById('donutchart_v2'));
+			chart2.draw(data, options2);
+			var chart3 = new google.visualization.PieChart(document.getElementById('donutchart_v3'));
+			chart3.draw(data, options3);
+			}
+		</script>
+	</head>
+	<body>	
+		<div id="donutchart" style="width: 900px; height: 500px;"></div>
+		<div id="donutchart_v1" style="width: 900px; height: 500px;"></div>
+		<div id="donutchart_v2" style="width: 900px; height: 500px;"></div>
+		<div id="donutchart_v3" style="width: 900px; height: 500px;"></div>
+	</body>
+</html>
