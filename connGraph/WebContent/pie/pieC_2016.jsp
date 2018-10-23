@@ -1,9 +1,9 @@
+<%-- 2016년도 보호 상태 --%>
+
 <%@page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" %>
 <%@page import="java.sql.*" %>
 <%@page import="java.util.*" %>
 <%@page import="org.json.JSONObject" %>
-
-<%-- 2016년도 보호 상태 --%>
 
 <%
 	Connection conn = null;

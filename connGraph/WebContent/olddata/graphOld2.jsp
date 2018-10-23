@@ -1,9 +1,9 @@
+<%-- 2009년도부터 2017년도의 동물 종류, 입양 count 불러오기 --%>
+
 <%@page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" %>
 <%@page import="java.sql.*" %>
 <%@page import="java.util.*" %>
 <%@page import="org.json.JSONObject" %>
-
-<%-- 2009년도부터 2017년도의 동물 종류, 입양 count 불러오기 --%>
 
 <%
 	Connection conn = null;

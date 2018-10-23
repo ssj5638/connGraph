@@ -1,9 +1,9 @@
+<%-- 2017년도 보호 상태 --%>
+
 <%@page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" %>
 <%@page import="java.sql.*" %>
 <%@page import="java.util.*" %>
 <%@page import="org.json.JSONObject" %>
-
-<%-- 2016년도 보호 상태 --%>
 
 <%
 	Connection conn = null;
@@ -14,7 +14,7 @@
 		String pw = "plus_1004";
 		conn = DriverManager.getConnection(url, id, pw);
 		
-			ResultSet rs2016 = null;
+			ResultSet rs2017 = null;
 			
 			List barlist = new LinkedList();
 			JSONObject responseObj = new JSONObject();
@@ -24,35 +24,35 @@
 							"count(case when processState_Pre='D' then 1 end) as D, " + 
 							"count(case when processState_Pre='R' then 1 end) as R,	" + 
 							"count(case when processState_Pre='E' then 1 end) as E " +
-							"from animal_2016 where kind='0';";
+							"from animal_2017 where kind='1';";
 							
 			PreparedStatement pstmt1 = conn.prepareStatement(sql1);
 			
-			rs2016 = pstmt1.executeQuery();
+			rs2017 = pstmt1.executeQuery();
 			
-			JSONObject opObj2016 = new JSONObject();
+			JSONObject opObj2017 = new JSONObject();
 			
-			while(rs2016.next()){
-				String year = "2016";
+			while(rs2017.next()){
+				String year = "2017";
 				System.out.println(year);
-				int c = rs2016.getInt("C");
+				int c = rs2017.getInt("C");
 				System.out.println(c);
-				int a = rs2016.getInt("A");
+				int a = rs2017.getInt("A");
 				System.out.println(a);
-				int d = rs2016.getInt("D");
+				int d = rs2017.getInt("D");
 				System.out.println(d); 
-				int r = rs2016.getInt("R");
+				int r = rs2017.getInt("R");
 				System.out.println(r); 
-				int e = rs2016.getInt("E");
+				int e = rs2017.getInt("E");
 				System.out.println(e); 
 				
-				opObj2016.put("Year", year);
-				opObj2016.put("C", c);
-				opObj2016.put("A", a);
-				opObj2016.put("D", d);
-				opObj2016.put("R", r);
-				opObj2016.put("E", e);
-				barlist.add(opObj2016);
+				opObj2017.put("Year", year);
+				opObj2017.put("C", c);
+				opObj2017.put("A", a);
+				opObj2017.put("D", d);
+				opObj2017.put("R", r);
+				opObj2017.put("E", e);
+				barlist.add(opObj2017);
 			}
 			responseObj.put("barlist", barlist);
 			out.print(responseObj.toString());

@@ -1,3 +1,4 @@
+<%-- import 하지 않고 JSP 파일에서 직접 Mysql connection --%>
 <%@ page import="java.sql.*"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <% 

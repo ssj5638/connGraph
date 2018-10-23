@@ -1,20 +1,20 @@
+<%-- 2015년도 보호 상태 --%>
+
 <%@page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" %>
 <%@page import="java.sql.*" %>
 <%@page import="java.util.*" %>
 <%@page import="org.json.JSONObject" %>
 
-<%-- 2017년도 보호 상태 --%>
-
 <%
 	Connection conn = null;
 	try {
 		Class.forName("com.mysql.cj.jdbc.Driver").newInstance(); 
-		String url = "jdbc:mysql://localhost:3306/animaldb?characterEncoding=EUC-KR&serverTimezone=UTC&autoReconnect=true&useSSL=false";
+		String url = "jdbc:mysql://localhost:3306/animaldb?characterEncoding=EUC-KR&serverTimezone=UTC&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true";
 		String id = "root"; 		// 사용자계정
 		String pw = "plus_1004";
 		conn = DriverManager.getConnection(url, id, pw);
 		
-			ResultSet rs2017 = null;
+			ResultSet rs2015 = null;
 			
 			List barlist = new LinkedList();
 			JSONObject responseObj = new JSONObject();
@@ -24,35 +24,35 @@
 							"count(case when processState_Pre='D' then 1 end) as D, " + 
 							"count(case when processState_Pre='R' then 1 end) as R,	" + 
 							"count(case when processState_Pre='E' then 1 end) as E " +
-							"from animal_2017 where kind='1';";
+							"from animal_2015 where kind='1';";
 							
 			PreparedStatement pstmt1 = conn.prepareStatement(sql1);
 			
-			rs2017 = pstmt1.executeQuery();
+			rs2015 = pstmt1.executeQuery();
 			
-			JSONObject opObj2017 = new JSONObject();
+			JSONObject opObj2015 = new JSONObject();
 			
-			while(rs2017.next()){
-				String year = "2017";
+			while(rs2015.next()){
+				String year = "2015";
 				System.out.println(year);
-				int c = rs2017.getInt("C");
+				int c = rs2015.getInt("C");	// 보호중
 				System.out.println(c);
-				int a = rs2017.getInt("A");
+				int a = rs2015.getInt("A"); // 기증, 입양
 				System.out.println(a);
-				int d = rs2017.getInt("D");
+				int d = rs2015.getInt("D"); // 자연사, 안락사
 				System.out.println(d); 
-				int r = rs2017.getInt("R");
+				int r = rs2015.getInt("R"); // 반환
 				System.out.println(r); 
-				int e = rs2017.getInt("E");
+				int e = rs2015.getInt("E"); // 방사, 미포획
 				System.out.println(e); 
 				
-				opObj2017.put("Year", year);
-				opObj2017.put("C", c);
-				opObj2017.put("A", a);
-				opObj2017.put("D", d);
-				opObj2017.put("R", r);
-				opObj2017.put("E", e);
-				barlist.add(opObj2017);
+				opObj2015.put("Year", year);
+				opObj2015.put("C", c);
+				opObj2015.put("A", a);
+				opObj2015.put("D", d);
+				opObj2015.put("R", r);
+				opObj2015.put("E", e);
+				barlist.add(opObj2015);
 			}
 			responseObj.put("barlist", barlist);
 			out.print(responseObj.toString());

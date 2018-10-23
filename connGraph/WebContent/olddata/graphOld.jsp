@@ -1,9 +1,9 @@
+<%-- 2009년도부터 2017년도의 동물 종류 불러오기 for문 및 각 Table에서 데이터 불러오기 --%>
+
 <%@page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" %>
 <%@page import="java.sql.*" %>
 <%@page import="java.util.*" %>
 <%@page import="org.json.JSONObject" %>
-
-<%-- 2009년도부터 2017년도의 동물 종류 불러오기 for문 및 각 Table에서 데이터 불러오기 --%>
 
 <%
 	Connection conn = null;
