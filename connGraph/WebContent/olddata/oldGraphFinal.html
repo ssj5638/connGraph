@@ -1,3 +1,4 @@
+<!-- 문제점 : 팝업창을 띄우고 데이터를 불러오는데까지 기다리지 않으면 그래프가 그려지지 않음 -->
 <html>
    <head>
       <title>Google Charts Tutorial</title>
@@ -11,7 +12,7 @@
 	      		
 	      		$.ajax({
 	      			type : 'POST',
-	      			url : 'graphOld2.jsp',
+	      			url : 'graphOld3.jsp',
 	      			dataType : 'json',
 	      			success : function(data) {
 	      				// stringify : 인자로 전달된 자바스크립트의 데이터(배열)를 JSON 문자열로 바꾸기
