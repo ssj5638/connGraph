@@ -8,7 +8,6 @@
 <%@ page import="connGraph.DBConn" %>
 <%
 Connection conn = DBConn.getMySqlConnection();
-PreparedStatement pstmt = null;
 
 ResultSet rs09 = null;		// 09년도 종류
 ResultSet rs10 = null;		// 10년도 종류
@@ -197,6 +196,7 @@ String dataPoints1 = gsonObj.toJson(list1);
 String dataPoints2 = gsonObj.toJson(list2);
 String dataPoints3 = gsonObj.toJson(list3);
 String dataPoints4 = gsonObj.toJson(list4);
+
 %>
  
 <!DOCTYPE HTML>

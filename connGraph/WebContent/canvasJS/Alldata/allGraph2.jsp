@@ -1,4 +1,4 @@
-<%-- 데이터를 불러오는데 오래걸리는 문제를 데이터 직접 입력으로 해결 --%>
+<%-- 데이터를 불러오는데 오래걸리는 문제로 데이터 직접 입력 --%>
 
 <%@page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" %>
 <%@page import="java.sql.*" %>

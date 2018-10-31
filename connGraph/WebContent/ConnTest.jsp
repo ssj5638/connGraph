@@ -1,3 +1,4 @@
+<%-- Mysql 연결 확인 --%>
 <%@ page import = "java.sql.*" %>
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%
