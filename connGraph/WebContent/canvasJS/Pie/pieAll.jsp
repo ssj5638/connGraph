@@ -7,7 +7,14 @@
 <%@ page import="com.google.gson.JsonObject"%>
 <%@ page import="connGraph.DBConn" %>
 <%	
+	request.setCharacterEncoding("euc-kr");
+	String reYear = request.getParameter("year");
+	String reKind = request.getParameter("kind");
 	
+	System.out.println(reYear);
+	System.out.println(reKind);
+	
+
 	Connection conn = DBConn.getMySqlConnection();
 
 	PreparedStatement pstmt = null;
@@ -61,12 +68,12 @@ window.onload = function() {
 var chart = new CanvasJS.Chart("chartContainer", {
 	animationEnabled: true,
 	theme: "light2",
-/*	title: {
+	title: {
 		text: "2015년 유기동물 보호상태"
 	},
 	subtitles: [{
 		text: "Dogs"
-	}],								*/
+	}],
 	data: [{
 		type: "doughnut",
 		yValueFormatString: "#,##0",

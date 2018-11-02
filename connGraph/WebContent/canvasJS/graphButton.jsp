@@ -51,7 +51,7 @@ var visitorsData = {
 		click: visitorsChartDrilldownHandler,
 		cursor: "pointer",
 		explodeOnClick: false,
-		innerRadius: "75%",
+		innerRadius: "60%",
 		legendMarkerType: "square",
 		name: "New vs Returning Visitors",
 		radius: "100%",
@@ -84,15 +84,8 @@ var newVSReturningVisitorsOptions = {
 	animationEnabled: true,
 	theme: "light2",
 	title: {
-		text: "New VS Returning Visitors"
+		text: "보호 상태"
 	},
-	subtitles: [{
-		text: "Click on Any Segment to Drilldown",
-		backgroundColor: "#2eacd1",
-		fontSize: 16,
-		fontColor: "white",
-		padding: 5
-	}],
 	legend: {
 		fontFamily: "calibri",
 		fontSize: 14,
@@ -127,7 +120,7 @@ chart.options.data = visitorsData["New vs Returning Visitors"];
 chart.render();
  
 function visitorsChartDrilldownHandler(e) {
-	chart = new CanvasJS.Chart("chartContainer", visitorsDrilldownedChartOptions);
+	chart = new CanvasJS.Chart("sub_graph", visitorsDrilldownedChartOptions);
 	chart.options.data = visitorsData[e.dataPoint.name];
 	chart.options.title = { text: e.dataPoint.name }
 	chart.render();
@@ -139,12 +132,12 @@ $("#backButton").click(function() {
 	chart = new CanvasJS.Chart("chartContainer", newVSReturningVisitorsOptions);
 	chart.options.data = visitorsData["New vs Returning Visitors"];
 	chart.render();
-});
+} );
  
 }
 </script>
 <style>
-  #backButton {
+/*   #backButton {
 	border-radius: 4px;
 	padding: 8px;
 	border: none;
@@ -158,11 +151,14 @@ $("#backButton").click(function() {
   }
   .invisible {
     display: none;
-  }
+  } */
 </style>
 </head>
 <body>
+<div>
 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<div id="sub_graph" style="height: 370px; width: 100%;"></div>
+</div>
 <button class="btn invisible" id="backButton">&lt; Back</button>
 <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>

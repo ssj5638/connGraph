@@ -7,39 +7,39 @@
 <%
 	Connection conn = DBConn.getMySqlConnection();
 
-	PreparedStatement pstmt = null;
-	ResultSet rs = null;
+	PreparedStatement pstmtPie = null;
+	ResultSet rsPie = null;
 
-	String sql = "select count(case when processState_Pre='C' then 1 end) as C, " + 
+	String sqlPie = "select count(case when processState_Pre='C' then 1 end) as C, " + 
 					"count(case when processState_Pre='A' then 1 end) as A, " + 
 					"count(case when processState_Pre='D' then 1 end) as D, " + 
 					"count(case when processState_Pre='R' then 1 end) as R,	" + 
 					"count(case when processState_Pre='E' then 1 end) as E " +
 					"from animal_2015 where kind='0';";
 					
-	pstmt = conn.prepareStatement(sql); // prepareStatement에서 해당 sql을 미리 컴파일한다. 
+	pstmtPie = conn.prepareStatement(sqlPie); // prepareStatement에서 해당 sql을 미리 컴파일한다. 
 	
-	rs = pstmt.executeQuery(); // 쿼리를 실행하고 결과를 ResultSet 객체에 담는다. 
+	rsPie = pstmtPie.executeQuery(); // 쿼리를 실행하고 결과를 ResultSet 객체에 담는다. 
 
 	Gson gsonObj = new Gson();
 	Map<Object,Object> map = null;
 	List<Map<Object,Object>> list = new ArrayList<Map<Object,Object>>();
-	while(rs.next()){
+	while(rsPie.next()){
 		map = new HashMap<Object, Object>();
 		map.put("label", "입양/기증");
-		map.put("y", rs.getInt("A"));
+		map.put("y", rsPie.getInt("A"));
 		list.add(map);
 		map = new HashMap<Object, Object>();
 		map.put("label", "안락사/자연사");
-		map.put("y", rs.getInt("D"));
+		map.put("y", rsPie.getInt("D"));
 		list.add(map);
 		map = new HashMap<Object, Object>();
 		map.put("label", "반환");
-		map.put("y", rs.getInt("R"));
+		map.put("y", rsPie.getInt("R"));
 		list.add(map);
 		map = new HashMap<Object, Object>();
 		map.put("label", "기타");
-		map.put("y", rs.getInt("A")+rs.getInt("E"));
+		map.put("y", rsPie.getInt("A")+rsPie.getInt("E"));
 		list.add(map);
 	}
 	String dataPoints = gsonObj.toJson(list);

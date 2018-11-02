@@ -1,0 +1,54 @@
+<!-- select 값을 selectBox.jsp로 보내기 -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	
+	.wrap {
+		width:100%;
+		height:100%;
+		position:absolute;
+		margin: 0;
+		padding: 0;
+	}
+	
+	#select_area{
+		width:100%;
+		height:10%;
+		position:relative;
+	}
+	
+	#graph_area{
+		width:100%;
+		height:90%;
+		position:center;
+		margin:0;
+		padding:0;
+	
+	}
+
+</style>
+</head>
+<body>
+<div id=select_area>
+<form action="selectBox.jsp" onchange="this.form.submit()" method="post" target="iframe">
+<select name = "year">
+						<option value = "2015"> 2015 </option>
+						<option value = "2016"> 2016 </option>
+						<option value = "2017"> 2017 </option>
+					</select>
+					<select name = "kind">
+						<option value = "0"> 개 </option>
+						<option value = "1"> 고양이 </option>
+					</select>
+					<input type="submit" value="보내기"> 
+				</form>
+</div>
+<div id="graph_area">
+	<iframe class='iframe' name='iframe' src="pieBase2.jsp" ></iframe>
+</div>
+</body>
+</html>
