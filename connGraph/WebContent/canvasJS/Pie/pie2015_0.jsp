@@ -39,7 +39,7 @@
 		list.add(map);
 		map = new HashMap<Object, Object>();
 		map.put("label", "±‚≈∏");
-		map.put("y", rsPie.getInt("A")+rsPie.getInt("E"));
+		map.put("y", rsPie.getInt("C")+rsPie.getInt("E"));
 		list.add(map);
 	}
 	String dataPoints = gsonObj.toJson(list);

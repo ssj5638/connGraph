@@ -1,4 +1,4 @@
-<%-- 그래프 버튼화 --%>
+<%-- 그래프 버튼화 TEST용 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ page import="com.google.gson.Gson"%>
@@ -61,19 +61,16 @@ var visitorsData = {
 		dataPoints: <%out.print(newVsReturningVisitorsDataPoints);%>
 	}],
 	"A": [{
-		name: "A",
 		type: "column",
 		xValueType: "dateTime",
 		dataPoints: <%out.print(aDataPoints);%>
 	}],
 	"R": [{
-		name: "R",
 		type: "column",
 		xValueType: "dateTime",
 		dataPoints: <%out.print(rDataPoints);%>
 	}],
 	"D": [{
-		name: "D",
 		type: "column",
 		xValueType: "dateTime",
 		dataPoints: <%out.print(dDataPoints);%>
@@ -99,19 +96,6 @@ var newVSReturningVisitorsOptions = {
 var visitorsDrilldownedChartOptions = {
 	animationEnabled: true,
 	theme: "light2",
-	axisX: {
-		labelFontColor: "#717171",
-		lineColor: "#a2a2a2",
-		tickColor: "#a2a2a2"
-	},
-	axisY: {
-		gridThickness: 0,
-		includeZero: false,
-		labelFontColor: "#717171",
-		lineColor: "#a2a2a2",
-		tickColor: "#a2a2a2",
-		lineThickness: 1
-	},
 	data: []
 };
  

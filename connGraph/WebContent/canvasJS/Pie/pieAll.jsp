@@ -51,7 +51,7 @@
 		list.add(map);
 		map = new HashMap<Object, Object>();
 		map.put("label", "±‚≈∏");
-		map.put("y", rs.getInt("A")+rs.getInt("E"));
+		map.put("y", rs.getInt("C")+rs.getInt("E"));
 		list.add(map);
 	}
 	String dataPoints = gsonObj.toJson(list);
